@@ -5,7 +5,7 @@
 }
 
 :root {
-    --text-regular: 1.2rem/1.2 'Lato Regular';
-    --text-regular-small: 0.9rem/1.2 'Lato Regular';
-    --text-regular-tiny: 0.7rem/1.2 'Lato Regular';
+    --text-regular: 1.2rem/1.2 'Arial';
+    --text-regular-small: 0.9rem/1.2 'Arial';
+    --text-regular-tiny: 0.7rem/1.2 'Arial';
 }

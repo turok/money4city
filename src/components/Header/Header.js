@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useState } from 'react'
 import classnames from 'classnames'
 
 import { ANIMATION_DURATION, SHOW_MOLA_MOLA_TIMEOUT } from './Header.constants'
