@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './theme/init.css'
 

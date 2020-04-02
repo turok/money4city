@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react'
+import AddButton from '@components/AddButton'
 import classnames from 'classnames'
 
 import { ANIMATION_DURATION, SHOW_MOLA_MOLA_TIMEOUT } from './Header.constants'
@@ -10,11 +11,11 @@ function Header({ count }) {
   return (
     <header className={styles.header}>
       {!hiddenCount && (
-        <span className='count-visible'>Нужна помощь для {count}!</span>
+        <div className='count-visible'>Нужна помощь для {count}!</div>
       )}
-      {/* <a className={linkClass} href="https://molamola.by/campaigns?category_id=10&sort=popular">
-        Поддержать наших медиков <span>👨‍⚕️👩‍⚕️</span>
-      </a> */}
+      <div>
+        <AddButton/>
+      </div>
     </header>
   )
 }

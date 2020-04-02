@@ -10,9 +10,10 @@ const handleResponse = async response => {
   return response.data
 }
 
-async function request(path, method, data = null) {
+async function request(path, method, data = null, headers) {
   const api = create({
-    baseURL: API_BASE_URL
+    baseURL: API_BASE_URL,
+    headers: headers
   })
 
   return api[method](path, data)
@@ -23,3 +24,5 @@ async function request(path, method, data = null) {
 }
 
 export const getApi = (url, params) => request(url, 'get', params)
+
+export const postApi = (url, params) =>  request(url, 'post', params,  {'Content-Type': 'multipart/form-data'})

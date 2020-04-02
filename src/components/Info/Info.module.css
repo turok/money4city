@@ -1,5 +1,5 @@
 .info-button {
-    z-index: 1;
+    z-index: 9999999991;
     width: 48px;
     height: 48px;
     display: flex;
@@ -7,33 +7,45 @@
     justify-content: center;
     position: absolute;
     bottom: 25px;
-    left: 25px;
+    right: 25px;
     border-radius: 50%;
-    background-color: var(--color-blue);
+    background-color: var(--color-gray);
     box-shadow: 0 3px 12px 0 rgba(38, 47, 54, 0.5);
     transition: 0.15s background-color linear;
 
     &:hover {
-        background-color: var(--color-blue-light);
+        background-color: var(--color-gray-dark);
     }
 
     &:active {
-        background-color: var(--color-blue-dark);
+        background-color: var(--color-gray-dark);
     }
+}
+
+.info-text div {
+    color:#ADA9B2;
+    font-size:14px;
+    margin-top:10px;
+    line-height: 24px;
+    margin-bottom: 10px;
 }
 
 .info-text {
     padding: 15px;
     border-radius: 10px;
-    background-color: var(--color-gray);
+    background-color: var(--color-gray-dark);
     display: flex;
     flex-direction: column;
     width: 600px;
     font: var(--text-regular-small);
     position: absolute;
     bottom: 98px;
-    left: 25px;
-    z-index: 1;
+    right: 25px;
+    z-index: 999999999991;
+    
+    div {
+        
+    }
 
     span + span {
         margin-top: 10px;
