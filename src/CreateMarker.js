@@ -17,7 +17,7 @@ class CreateMarker extends Component {
       longitude: '',
       description: '',
       phone: '',
-      avatarFile: null,
+      imageFile: null,
     }
   }
 
@@ -34,7 +34,7 @@ class CreateMarker extends Component {
     formData.append("longitude", this.state.longitude);
     formData.append("description", this.state.description);
     formData.append("phone", this.state.phone);
-    formData.append("avatarFile", this.state.avatarFile);
+    formData.append("imageFile", this.state.imageFile);
 
     postApi(endpoints.markers, formData).then((result) => {
       console.log(result);
@@ -43,7 +43,7 @@ class CreateMarker extends Component {
 
   onDrop = (photo) => {
     this.setState({
-      avatarFile: photo[0],
+      imageFile: photo[0],
     });
 }
 
@@ -87,9 +87,10 @@ class CreateMarker extends Component {
               <Form.Label>Состояние:</Form.Label>
               <Form.Control name="statusType" as="select" onChange={(e) => this.handleChange(e)}>
                 <option>--Выберите Состояние--</option>
-                <option value='Blocked'>На грани закрытия</option>
-                <option value='NeedLowHelp'>Нужна помощь</option>
-                <option value='AllGood'>Пока держимся</option>
+                <option value='NeedHighHelp'>На грани закрытия</option>
+                <option value='NeedMiddleHelp'>Нужна помощь</option>
+                <option value='NeedLowHelp'>Пока держимся</option>
+                <option value='AllGood'>Все хорошо</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="description">
