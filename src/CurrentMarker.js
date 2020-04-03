@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { API_BASE_URL } from '@config/constants';
 
 
 class CurrentMarker extends Component {
@@ -9,12 +10,12 @@ class CurrentMarker extends Component {
 
   render() {
     const { marker } = this.props;
-    console.log(this.props);
+    const imgPath = `url("${API_BASE_URL}/${marker.imagePath}");`
 
     return (
       <div className="currentMarkerDetailsContainer">
           <div className="panel nameSection">
-            <img className="companyImg" src="/kazbek.jpg"></img>
+            <div className="companyImg" style={{ backgroundImage: `url(${API_BASE_URL}/${marker.imagePath})` }}></div>
             <div className="infoSection">
               <div className="name">
                 {marker.name}

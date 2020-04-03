@@ -1,6 +1,8 @@
 import React, { memo, Component } from 'react'
 import L from 'leaflet';
 import { Map as LMap, Marker, Popup, TileLayer } from 'react-leaflet'
+import { API_BASE_URL } from '@config/constants';
+import { baseApiUrl } from 'mapbox-gl';
 
 class Map extends Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class Map extends Component {
 
   render() {
     const position = this.state.defaultPosition;
+    console.log(this.state.markers);
 
     return (
       <LMap center={position} zoom={13} onClick={() => this.props.hideInfo()}>
@@ -25,7 +28,7 @@ class Map extends Component {
         {this.state.markers.map(marker => {
           const icon = L.divIcon({
             className: 'avatar-box',
-            html: `<div class="avatar" style="background-size: cover; background-image:url('/kazbek.jpg')"></div>`
+            html: `<div class="avatar" style="background-size: cover; background-image:url('${API_BASE_URL}/${marker.imagePath}')"></div>`
           })
           icon.options.iconSize = [70, 70]
 
