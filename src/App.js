@@ -44,7 +44,8 @@ class App extends Component {
     this.state = {
       selectedMarker: null,
       markers: [],
-      initialLocation: [53.878684, 30.332915]
+      initialLocation: [53.878684, 30.332915],
+      isInfoVisible: true,
     }
   }
 
@@ -72,8 +73,18 @@ class App extends Component {
     this.setState({ currentMarker: null })
   }
 
+  toggleInfoMenu = () => {
+    this.setState(prevState => ({ isInfoVisible: !prevState.isInfoVisible}));
+  }
+
+  hideInfo = () => {
+    this.setState({
+      isInfoVisible: false
+    })
+  }
+
   render() {
-    const { markers, initialLocation, currentMarker } = this.state;
+    const { markers, initialLocation, currentMarker, isInfoVisible } = this.state;
 
     return (
       <Router>
@@ -85,13 +96,14 @@ class App extends Component {
             <Map
               location={initialLocation}
               markers={markers}
-              onSelectMarker={(marker) => { this.openMarkerDetails(marker) }}
+              hideInfo={this.hideInfo}
               onCloseMarker={this.onCloseMarker}
+              onSelectMarker={(marker) => { this.hideInfo(); this.openMarkerDetails(marker) }}
             />
             ) : (
               <Loading />
             )}
-            <Info />
+            <Info toggleMenu={this.toggleInfoMenu} isInfoVisible={isInfoVisible} />
           </Route>
           <Route path="/createMarker">
             <CreateMarker />

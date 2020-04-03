@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://172.18.19.240:8080'
+export const API_BASE_URL = 'http://178.124.173.22:8080'
 
 export const MAP_INITIAL_ZOOM = 12
 export const MAP_MAX_ZOOM = 18

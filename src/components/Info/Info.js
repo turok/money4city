@@ -1,18 +1,31 @@
-import React, { memo, useState } from 'react'
+import React, { memo, Component } from 'react'
 
 import { ReactComponent as Icon } from '@static/icons/info.svg'
 
 import styles from './Info.module.css'
 
-function Info() {
-  const [visible, setVisible] = useState(false)
-
-  function toggle() {
-    setVisible(!visible)
+class Info extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      visible: props.isInfoVisible
+    }
   }
 
-  return (
-    <>
+  // eslint-disable-next-line react/no-deprecated
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps);
+    this.setState({
+      visible: nextProps.isInfoVisible
+    })
+  }
+
+
+  render() {
+    const { visible } = this.state;
+
+    return (
+      <>
       {visible && (
         <div className={styles['info-text']}>
           <h6>Проблема</h6>
@@ -36,9 +49,10 @@ function Info() {
           <div>Cвязаться с нами</div>
         </div>
       )}
-      <button className={styles['info-button']} type="button" onClick={toggle}><Icon /></button>
+      <button className={styles['info-button']} type="button" onClick={() =>this.props.toggleMenu()}><Icon /></button>
     </>
-  )
+    )
+  }
 }
 
 export default memo(Info)

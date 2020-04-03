@@ -17,7 +17,7 @@ class Map extends Component {
     const position = this.state.defaultPosition;
 
     return (
-      <LMap center={position} zoom={13}>
+      <LMap center={position} zoom={13} onClick={() => this.props.hideInfo()}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
