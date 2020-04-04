@@ -17,8 +17,10 @@ class CreateMarker extends Component {
       longitude: '',
       description: '',
       phone: '',
+      accountNumber: '',
       imageFile: null,
       ownerAvatarFile: null,
+      qrImage: null,
     }
   }
 
@@ -33,15 +35,17 @@ class CreateMarker extends Component {
     formData.append("facebookLink", this.state.facebookLink);
     formData.append("contactName", this.state.contactName);
     formData.append("statusType", this.state.statusType);
+    formData.append("accountNumber", this.state.accountNumber);
     formData.append("latitude", this.state.latitude);
     formData.append("longitude", this.state.longitude);
     formData.append("description", this.state.description);
     formData.append("phone", this.state.phone);
     formData.append("imageFile", this.state.imageFile);
     formData.append("ownerAvatarFile", this.state.ownerAvatarFile);
+    formData.append("qrImage", this.state.qrImage);
 
     postApi(endpoints.markers, formData).then((result) => {
-      console.log(result);
+      alert("Компания создана");
     });
   }
 
@@ -57,6 +61,12 @@ class CreateMarker extends Component {
     });
   };
 
+  onDropQR = (photo) => {
+    this.setState({
+      qrImage: photo[0],
+    });
+  };
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -66,12 +76,12 @@ class CreateMarker extends Component {
       <div className="createMarkerContainer">
           <Form onSubmit={(e) => this.createMarker(e)}>
             <Form.Group controlId="name">
-              <Form.Label>Имя:</Form.Label>
+              <Form.Label>Название компании:</Form.Label>
               <Form.Control type="text" name="name" placeholder="Введите имя" onChange={(e) => this.handleChange(e)} />
             </Form.Group>
             <Form.Group controlId="address">
               <Form.Label>Адрес:</Form.Label>
-              <Form.Control type="text" name="address" placeholder="Введите адрес" onChange={(e) => this.handleChange(e)} />
+              <Form.Control as="textarea" rows="5" type="text" name="address" placeholder="Введите адрес" onChange={(e) => this.handleChange(e)} />
             </Form.Group>
             <Form.Group controlId="contactName">
               <Form.Label>Имя представителя:</Form.Label>
@@ -88,6 +98,10 @@ class CreateMarker extends Component {
             <Form.Group controlId="facebookLink">
               <Form.Label>Facebook:</Form.Label>
               <Form.Control type="text" name="facebookLink" placeholder="Введите Facebook" onChange={(e) => this.handleChange(e)} />
+            </Form.Group>
+            <Form.Group controlId="latitide">
+              <Form.Label>Широта:</Form.Label>
+              <Form.Control type="text" name="latitide" placeholder="Введите широту" onChange={(e) => this.handleChange(e)} />
             </Form.Group>
             <Form.Group controlId="longitude">
               <Form.Label>Долгота:</Form.Label>
@@ -107,6 +121,16 @@ class CreateMarker extends Component {
                 className='imageUploader'
                 onChange={this.onDropAvatar}
             />
+            <ImageUploader
+                withIcon
+                singleImage
+                withPreview
+                buttonText='Выберите QR'
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
+                className='imageUploader'
+                onChange={this.onDropQR}
+            />
             <Form.Group controlId="statusType">
               <Form.Label>Состояние:</Form.Label>
               <Form.Control name="statusType" as="select" onChange={(e) => this.handleChange(e)}>
@@ -117,9 +141,19 @@ class CreateMarker extends Component {
                 <option value='AllGood'>Все хорошо</option>
               </Form.Control>
             </Form.Group>
+            <Form.Group controlId="accountNumber">
+              <Form.Label>Номер счета:</Form.Label>
+              <Form.Control type="text" name="accountNumber" placeholder="Введите номер счета" onChange={(e) => this.handleChange(e)} />
+            </Form.Group>
+            <Form.Group controlId="statusType">
+              <Form.Label>Валюта счета:</Form.Label>
+              <Form.Control name="сurrencyFormat" as="select">
+                <option value='BYN'>BYN</option>
+              </Form.Control>
+            </Form.Group>
             <Form.Group controlId="description">
               <Form.Label>Описание:</Form.Label>
-              <Form.Control name="description" onChange={(e) => this.handleChange(e)} />
+              <Form.Control as="textarea" rows="5" name="description" onChange={(e) => this.handleChange(e)} />
             </Form.Group>
             <ImageUploader
                 withIcon

@@ -474,6 +474,14 @@ button {
     height: 50px;
 }
 
+.createMarkerContainer textarea{
+    height: 100px !important;
+}
+
+.createMarkerContainer textarea[name=address]{
+    height: 70px !important;
+}
+
 .createMarkerContainer .fileUploader{
     width: 500px;
     margin-left:220px;
