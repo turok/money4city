@@ -66,6 +66,7 @@ class App extends Component {
   }
 
   openMarkerDetails = (marker) => {
+    console.log(marker);
     this.setState({ currentMarker: marker });
   }
 
@@ -89,20 +90,16 @@ class App extends Component {
     return (
       <Router>
         <Header count={markers && markers.length} />
-        {currentMarker ? <CurrentMarker marker={currentMarker} /> : null}
+        {currentMarker ? <CurrentMarker marker={currentMarker} onCloseMarker={this.onCloseMarker} /> : null}
         <Switch>
           <Route exact path="/">
-            {markers && markers.length > 0 ? (
             <Map
               location={initialLocation}
-              markers={markers}
+              markers={markers && markers.length > 0 ? markers : []}
               hideInfo={this.hideInfo}
               onCloseMarker={this.onCloseMarker}
-              onSelectMarker={(marker) => { this.hideInfo(); this.openMarkerDetails(marker) }}
+              onSelectMarker={(marker) => { this.openMarkerDetails(marker) }}
             />
-            ) : (
-              <Loading />
-            )}
             <Info toggleMenu={this.toggleInfoMenu} isInfoVisible={isInfoVisible} />
           </Route>
           <Route path="/createMarker">

@@ -11,6 +11,25 @@ body {
     background-color: var(--color-gray-dark);
 }
 
+.logo a{
+    color: #ADA9B2;
+    font-size: 16px;
+    margin-top: 10px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.header-text {
+    color: #7D7685;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    opacity: 1;
+}
+
 #root {
     height: 100%;
     display: flex;
@@ -44,6 +63,10 @@ button {
     }
 }
 
+.avatar-box.selected {
+    z-index: 99999999999 !important;
+}
+
 .avatar-box {
 
     &:hover {
@@ -55,7 +78,6 @@ button {
         width: 70px;
         height: 70px;
         border-radius: 50%;
-        border: 2px solid var(--color-red);
     }
 
     .message {
@@ -74,6 +96,22 @@ button {
             font: var(--text-regular-tiny);
         }
     }
+}
+
+.avatar.red{
+    border: 2px solid red;
+}
+
+.avatar.green{
+    border: 2px solid green;
+}
+
+.avatar.yellow{
+    border: 2px solid yellow;
+}
+
+.avatar.orange{
+    border: 2px solid orange;
 }
 
 .cluster {
@@ -156,29 +194,45 @@ button {
     color:red;
 }
 
-.leaflet-popup-pane{
-    z-index: 200 !important;
+.leaflet-popup{
+    bottom:-55px !important;
+    left: 40px !important;
 }
 
-.leaflet-popup{
-    bottom:-53px !important;
-    left: -5px !important;
+.leaflet-pane{
+    z-index:400;
 }
 
 .leaflet-popup-content-wrapper{
     width: 180px;
     height: 68px;
     background-color: #35303B;
-    border-radius: 0px 30px 30px 0px;
+    border-radius: 30px 30px 30px 30px;
     border: 2px solid #6B6473;
     position: relative;
+    z-index: 9999999998;
+}
+
+.red .leaflet-popup-content-wrapper{
+    border-color:red;
+}
+
+.yellow .leaflet-popup-content-wrapper{
+    border-color:yellow;
+}
+
+.green .leaflet-popup-content-wrapper{
+    border-color:green;
+}
+
+.orange .leaflet-popup-content-wrapper{
+    border-color:orange;
 }
 
 .leaflet-popup-content{
     width: 100% !important;
     height: 100% !important;
     margin-top:3px;
-    margin-left:45px;
     padding:0;
     border-radius: 50%;
 }
@@ -192,8 +246,12 @@ button {
 }
 
 .popup-company-name{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     padding-top:3px;
     padding-bottom:3px;
+    width:120px;
     color:white;
 }
 
@@ -208,7 +266,22 @@ button {
 
 .popup-status-text{
     margin-top:3px;
+}
+
+.popup-status-text.red{
     color:red;
+}
+
+.popup-status-text.yellow{
+    color:yellow;
+}
+
+.popup-status-text.green{
+    color:green;
+}
+
+.popup-status-text.orange{
+    color:orange;
 }
 
 .currentMarkerDetailsContainer{
@@ -223,11 +296,27 @@ button {
     letter-spacing: 0;
 }
 
+.currentMarkerDetailsContainer .closeDetailsPanel {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    right: 5px;
+    font-size:20px;
+    border: 2px solid black;
+    background-color: black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color:white;
+}
+
 .currentMarkerDetailsContainer .infoSection {
     margin:21px;
 }
 
 .currentMarkerDetailsContainer .nameSection{
+    position: relative;
     border-bottom: 2px solid #000;
 }
 
@@ -241,25 +330,25 @@ button {
 }
 
 .currentMarkerDetailsContainer .nameSection .infoSection {
-    height: 70px;
+    min-height: 70px;
+    margin-bottom:10px;
 }
 
 .currentMarkerDetailsContainer .nameSection .status{
     margin-top:10px;
+    float:left;
     font-size:14px;
 }
 
-.currentMarkerDetailsContainer .nameSection .status.orange{
-    font-size:14px;
-    color: red;
-    float:left;
+.currentMarkerDetailsContainer .nameSection .statusSection{
+    display: flex;
+    justify-content: space-between;
 }
 
 .currentMarkerDetailsContainer .nameSection .lastUpdateDate{
     font-size:14px;
     margin-top:10px;
     color: #7D7685;
-    float:right;
     font-style: italic;
 }
 
@@ -290,6 +379,7 @@ button {
 .currentMarkerDetailsContainer .descriptionSection .buttons {
     margin-top:30px;
     text-align: center;
+    margin-bottom:20px;
 }
 
 .currentMarkerDetailsContainer .descriptionSection .buttons .supportButton {
@@ -308,6 +398,22 @@ button {
     border-bottom: 2px solid #000;
     height: 70px;
     text-align: center;
+}
+
+.currentMarkerDetailsContainer .red{
+    color:red;
+}
+
+.currentMarkerDetailsContainer .green{
+    color:green;
+}
+
+.currentMarkerDetailsContainer .yellow{
+    color:yellow;
+}
+
+.currentMarkerDetailsContainer .orange{
+    color:orange;
 }
 
 .currentMarkerDetailsContainer .socialMediaSection .icons img {
