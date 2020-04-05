@@ -81,7 +81,7 @@ export function createPeopleLayer(items) {
     icon.options.iconSize = [48, 48]
     const marker = new Leaflet.marker(new Leaflet.LatLng(item.latitude, item.longitude), { icon });
     var popup = Leaflet.popup()
-    .setContent(`
+      .setContent(`
     <div class='company' style="background-size: cover; background-image:url('/kazbek.jpg')">
       <div class="company-info">
         <div class="company-name">${item.name}</div>

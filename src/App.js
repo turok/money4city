@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, browserHistory } from 'react'
 import CurrentMarker from './CurrentMarker'
 import AddButton from '@components/AddButton'
 import Header from '@components/Header'
 import Loading from '@components/Loading'
 import Map from '@components/Map'
 import Info from '@components/Info'
-import createMarker from './CreateMarker'
+import createMarker from './CreateMarker';
+
 
 import { getApi } from '@services/api'
 import endpoints from '@config/endpoints'
@@ -49,14 +50,14 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    getApi(endpoints.markers)
+  async componentDidMount() {
+    await getApi(endpoints.markers)
       .then(result => {
 
         this.setState({
           markers: result,
         })
-        
+
       })
       .catch(err => {
         console.log('error');
@@ -66,7 +67,6 @@ class App extends Component {
   }
 
   openMarkerDetails = (marker) => {
-    console.log(marker);
     this.setState({ currentMarker: marker });
   }
 
@@ -75,7 +75,7 @@ class App extends Component {
   }
 
   toggleInfoMenu = () => {
-    this.setState(prevState => ({ isInfoVisible: !prevState.isInfoVisible}));
+    this.setState(prevState => ({ isInfoVisible: !prevState.isInfoVisible }));
   }
 
   hideInfo = () => {
@@ -88,11 +88,14 @@ class App extends Component {
     const { markers, initialLocation, currentMarker, isInfoVisible } = this.state;
 
     return (
-      <Router>
+      <Router history={browserHistory}>
         <Header count={markers && markers.length} />
-        {currentMarker ? <CurrentMarker marker={currentMarker} onCloseMarker={this.onCloseMarker} /> : null}
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/createMarker">
+            <CreateMarker />
+          </Route>
+          <Route path="/:id?">
+            <CurrentMarker markers={markers && markers.length > 0 ? markers : []} marker={currentMarker} onCloseMarker={this.onCloseMarker} />
             <Map
               location={initialLocation}
               markers={markers && markers.length > 0 ? markers : []}
@@ -102,9 +105,7 @@ class App extends Component {
             />
             <Info toggleMenu={this.toggleInfoMenu} isInfoVisible={isInfoVisible} />
           </Route>
-          <Route path="/createMarker">
-            <CreateMarker />
-          </Route>
+
         </Switch>
       </Router>
     )
