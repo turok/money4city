@@ -370,6 +370,10 @@ button {
     min-height: 180px;
 }
 
+.currentMarkerDetailsContainer .descriptionSection .infoSection {
+    display: flex;
+}
+
 .currentMarkerDetailsContainer .descriptionSection .text {
     margin:21px;
     font-size: 14px;
@@ -414,6 +418,12 @@ button {
 
 .currentMarkerDetailsContainer .orange{
     color:orange;
+}
+
+.currentMarkerDetailsContainer .userAvatar {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
 }
 
 .currentMarkerDetailsContainer .socialMediaSection .icons img {
@@ -477,6 +487,7 @@ button {
 .createMarkerContainer textarea{
     height: 100px !important;
 }
+
 
 .createMarkerContainer textarea[name=address]{
     height: 70px !important;

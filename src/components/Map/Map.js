@@ -1,7 +1,8 @@
 import React, { memo, Component } from 'react'
 import L from 'leaflet';
 import { Map as LMap, Marker, Popup, TileLayer } from 'react-leaflet'
-import { API_BASE_URL } from '@config/constants';
+import { API_BASE_URL, MAPBOX_ACCESS_TOKEN, MAPBOX_CLASS } from '@config/constants';
+import MapBoxGLLayer from '@components/MapboxGLLayer';
 import classnames from 'classnames';
 
 class Map extends Component {
@@ -50,10 +51,10 @@ class Map extends Component {
 
     return (
       <LMap center={position} zoom={13} onClick={() => this.mapClick()}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <MapBoxGLLayer
+            accessToken={MAPBOX_ACCESS_TOKEN}
+            style={MAPBOX_CLASS}
+          />
         
         {markers.map(marker => {
           let statusText = '';

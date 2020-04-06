@@ -105,7 +105,10 @@ class CurrentMarker extends Component {
           </div>
           <div className="panel descriptionSection">
             <div className="infoSection">
-              <span className="fa fa-user"></span> {marker.contactName}
+            { marker.ownerAvatarPath ?
+             <img src={`${API_BASE_URL}/${marker.imagePath}`} className="userAvatar"></img> :
+            <span className="fa fa-user"></span> } 
+              {marker.contactName}
             </div>
             <div className="text">
                 {marker.description}

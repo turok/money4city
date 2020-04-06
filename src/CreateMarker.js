@@ -40,12 +40,23 @@ class CreateMarker extends Component {
     formData.append("longitude", this.state.longitude);
     formData.append("description", this.state.description);
     formData.append("phone", this.state.phone);
-    formData.append("imageFile", this.state.imageFile);
-    formData.append("ownerAvatarFile", this.state.ownerAvatarFile);
-    formData.append("qrImage", this.state.qrImage);
+
+    if (this.state.imageFile){
+      formData.append("imageFile", this.state.imageFile);
+    }
+
+    if (this.state.ownerAvatarFile) {
+      formData.append("ownerAvatarFile", this.state.ownerAvatarFile);
+    }
+
+    if (this.state.qrImage) {
+      formData.append("qrImage", this.state.qrImage);
+    }
+    
 
     postApi(endpoints.markers, formData).then((result) => {
-      alert("Компания создана");
+      console.log(result);
+      alert("Код активации: " + result ? result.activationCode : "Ошибка, компания не была создана");
     });
   }
 
@@ -99,9 +110,9 @@ class CreateMarker extends Component {
               <Form.Label>Facebook:</Form.Label>
               <Form.Control type="text" name="facebookLink" placeholder="Введите Facebook" onChange={(e) => this.handleChange(e)} />
             </Form.Group>
-            <Form.Group controlId="latitide">
+            <Form.Group controlId="latitude">
               <Form.Label>Широта:</Form.Label>
-              <Form.Control type="text" name="latitide" placeholder="Введите широту" onChange={(e) => this.handleChange(e)} />
+              <Form.Control type="text" name="latitude" placeholder="Введите широту" onChange={(e) => this.handleChange(e)} />
             </Form.Group>
             <Form.Group controlId="longitude">
               <Form.Label>Долгота:</Form.Label>
