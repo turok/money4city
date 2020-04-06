@@ -26,8 +26,25 @@ async function request(path, method, data = null, headers) {
 
 export const getApi = (url, params) => request(url, 'get', params)
 
-export const postApi = (url, params) =>  request(url, 'post', params,  {'Content-Type': 'multipart/form-data'})
 
+export const createMarker = (data) => {
+  const token = localStorage.getItem('token');
+
+  if (!token){
+    return Promise.resolve([]);
+  }
+
+  const url = `${API_BASE_URL}/businesses`;
+
+  return axios.post(url, data, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data'
+    }
+  }).then((result) => {
+      return result.data;
+  });
+}
 export const getInactiveMarkers = () => {
   const token = localStorage.getItem('token');
 

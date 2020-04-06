@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import ImageUploader from 'react-images-upload';
-import { postApi } from '@services/api';
+import { postApi, createMarker } from '@services/api';
 import endpoints from '@config/endpoints'
 
 class CreateMarker extends Component {
@@ -53,8 +53,8 @@ class CreateMarker extends Component {
       formData.append("qrImage", this.state.qrImage);
     }
 
-    postApi(endpoints.markers, formData).then((result) => {
-      alert("Код активации: " + result ? result.activationCode : "Ошибка, компания не была создана");
+    createMarker(formData).then((result) => {
+      alert(result ? result.activationCode : "Ошибка, компания не была создана");
     });
   }
 
