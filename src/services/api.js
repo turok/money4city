@@ -1,4 +1,5 @@
 import { create } from 'apisauce'
+import axios from 'axios';
 
 import { API_BASE_URL } from '@config/constants'
 
@@ -26,3 +27,50 @@ async function request(path, method, data = null, headers) {
 export const getApi = (url, params) => request(url, 'get', params)
 
 export const postApi = (url, params) =>  request(url, 'post', params,  {'Content-Type': 'multipart/form-data'})
+
+export const getInactiveMarkers = () => {
+  const token = localStorage.getItem('token');
+
+  if (!token){
+    return Promise.resolve([]);
+  }
+
+  const url = `${API_BASE_URL}/admin/businesses`;
+
+  return axios.get(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }).then((result) => {
+      return result.data;
+  });
+}
+
+export const getActiveMarkers = () => {
+  const url = `${API_BASE_URL}/businesses`;
+
+  return axios.get(url, {
+  }).then((result) => {
+      return result.data;
+  });
+}
+
+export const confirmMarker = (id) => {
+  const token = localStorage.getItem('token');
+
+  if (!token){
+    return Promise.resolve([]);
+  }
+
+  const url = `${API_BASE_URL}/admin/businesses/${id}/approve`;
+
+  return axios.post(url, null, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }).then((result) => {
+      return result.data;
+  });
+}
+
+

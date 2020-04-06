@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { API_BASE_URL } from '@config/constants';
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
+import { getActiveMarkers, getInactiveMarkers, confirmMarker } from '@services/api';
 
 
 class CurrentMarker extends Component {
@@ -9,17 +10,49 @@ class CurrentMarker extends Component {
     super(props);
 
     this.state = {
-      markers: this.props.markers,
+      markers: this.props.markers || [],
       marker: null,
     }
   }
 
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps) {
-    this.setState({ markers: nextProps.markers });
+  componentWillMount() {
+    if (this.props.loadInactiveMarkers) {
+      getInactiveMarkers().then((result) => {
+        console.log('inactive')
+        console.log(result)
+        this.setState({markers: result});
 
+        if (this.props.match.params.id && result) {
+          const marker = result.find(m => m.id == this.props.match.params.id);
+    
+          if (marker) {
+            this.setState({ marker: marker });
+          }
+        }
+      });
+    }
+    else{
+      getActiveMarkers().then((result) => {
+        console.log('inactive')
+        console.log(result)
+        this.setState({markers: result});
+
+        if (this.props.match.params.id && result) {
+          const marker = result.find(m => m.id == this.props.match.params.id);
+    
+          if (marker) {
+            this.setState({ marker: marker });
+          }
+        }
+      });
+    }
+  }
+
+  // eslint-disable-next-line react/no-deprecated
+  componentWillReceiveProps(nextProps){
     if (nextProps.match.params.id) {
-      const marker = nextProps.markers.find(m => m.id == nextProps.match.params.id);
+      const marker = this.state.markers.find(m => m.id == this.props.match.params.id);
 
       if (marker) {
         this.setState({ marker: marker });
@@ -27,13 +60,26 @@ class CurrentMarker extends Component {
     }
   }
 
+  confirmMarker = (id) => {
+    confirmMarker(id).then(() => {
+      alert("Маркер заапрувлен");
+    })
+  }
+
   onCloseMarker = () => {
     this.setState({ marker: null })
-    this.props.history.push("/");
+
+    if (this.props.loadInactiveMarkers) {
+      this.props.history.push("/validate");
+    }
+    else{
+      this.props.history.push("/");
+    }
+    
   }
 
   render() {
-    const { marker } = this.state;
+    const marker = this.state.markers.find(m => m.id == this.props.match.params.id);
 
     if (!marker) {
       return null;
@@ -93,13 +139,17 @@ class CurrentMarker extends Component {
         </div>
         <div className="panel descriptionSection">
           <div className="infoSection">
-            <span className="fa fa-user"></span> {marker.contactName}
+          { marker.ownerAvatarPath ?
+             <img src={`${API_BASE_URL}/${marker.imagePath}`} className="userAvatar"></img> :
+            <span className="fa fa-user"></span> } 
+              {marker.contactName}
           </div>
           <div className="text">
             {marker.description}
           </div>
           <div className="buttons">
             <input type="button" className="supportButton" value="Поддержать рублём" />
+            {this.props.validateMode ? <input type="button" className="confirmMarkerButton" value="Все хорошо" onClick={() => this.confirmMarker(marker.id) } /> : null}
           </div>
         </div>
         <div className="panel socialMediaSection">

@@ -1242,6 +1242,11 @@
   resolved "https://registry.yarnpkg.com/@mapbox/whoots-js/-/whoots-js-3.1.0.tgz#497c67a1cef50d1a2459ba60f315e448d2ad87fe"
   integrity sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==
 
+"@mongodb-js/react-mapbox-gl-leaflet@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@mongodb-js/react-mapbox-gl-leaflet/-/react-mapbox-gl-leaflet-1.0.0.tgz#74c845cedb4a9d714dff09838bfff534cc6c9dbc"
+  integrity sha512-+gOWR3xqi0FBpNnXxg5RLuJAeaTsJP1/6ntncBP/bphvutWGak19ybL+PZTswSCwgsGb3Vq6GbUlASV24QjHGQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -2193,7 +2198,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
-axios@^0.19.0:
+axios@^0.19.0, axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -6699,15 +6704,15 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mapbox-gl-leaflet@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/mapbox-gl-leaflet/-/mapbox-gl-leaflet-0.0.11.tgz#6da1c6ec5b2aca27df6f5a2118cee7c351c4ed66"
-  integrity sha512-3jXZbQaZf/6D3lzv2PBHZsDvlT5wWt7bdm/zDDq6aKJ3n90PGQ+hyBY6Zav0z93Fy0PBHtOsx84Y5MVBA7si5Q==
+mapbox-gl-leaflet@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/mapbox-gl-leaflet/-/mapbox-gl-leaflet-0.0.12.tgz#1b6bec0db56e28a349c6e1e685c97715cb43f226"
+  integrity sha512-bfGl+CdAYc51ua8s9OOq5J0EcAnHuxS0OoQP5EWsVmSUGFvKkgOD+Od2sFmDOl+zBUjdBEvqLaf9t/tf2BtrWw==
 
-mapbox-gl@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-1.9.0.tgz#53e3e13c99483f362b07a8a763f2d61d580255a5"
-  integrity sha512-PKpoiB2pPUMrqFfBJpt/oA8On3zcp0adEoDS2YIC2RA6o4EZ9Sq2NPZocb64y7ra3mLUvEb7ps1pLVlPMh6y7w==
+mapbox-gl@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-1.9.1.tgz#9c06310db6469064bb0245fe00d6233865ef4156"
+  integrity sha512-jpBcqh+4qpOkj8RdxRdvwKPA8gzNYyMQ8HOcXgZYuEM5nKevRDjD3cEs+rUxi1JuYj4t8bIk68Lfh7aQQC1MjQ==
   dependencies:
     "@mapbox/geojson-rewind" "^0.4.0"
     "@mapbox/geojson-types" "^1.0.2"

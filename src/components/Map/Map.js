@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import L from 'leaflet';
-import { Map as LMap, Marker, Popup, TileLayer } from 'react-leaflet'
-import { API_BASE_URL, MAP_MAX_CLUSTERING_ZOOM, MAP_CLUSTER_S_MAX, MAP_CLUSTER_M_MAX } from '@config/constants';
+import { Map as LMap, Marker, Popup } from 'react-leaflet'
+import { API_BASE_URL, MAP_MAX_CLUSTERING_ZOOM, MAP_CLUSTER_S_MAX, MAP_CLUSTER_M_MAX, MAPBOX_ACCESS_TOKEN, MAPBOX_CLASS } from '@config/constants';
 import classnames from 'classnames';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'react-leaflet-markercluster/dist/styles.min.css';
+import MapBoxGLLayer from '@components/MapboxGLLayer';
 import { withRouter } from 'react-router-dom';
+import { getActiveMarkers, getInactiveMarkers } from '@services/api';
 
 class Map extends Component {
   constructor(props) {
@@ -17,6 +19,25 @@ class Map extends Component {
       defaultPosition: [53.878684, 30.332915],
       currentZoom: 13,
       selectedMarkerId: null,
+      validateMode: props.validateMode
+    }
+  }
+
+  // eslint-disable-next-line react/no-deprecated
+  componentWillMount() {
+    if (this.props.loadInactiveMarkers) {
+      getInactiveMarkers().then((result) => {
+        console.log('inactive')
+        console.log(result)
+        this.setState({markers: result});
+      });
+    }
+    else{
+      getActiveMarkers().then((result) => {
+        console.log('inactive')
+        console.log(result)
+        this.setState({markers: result});
+      });
     }
   }
 
@@ -32,7 +53,12 @@ class Map extends Component {
   }
 
   openMarker = (marker) => {
-    this.props.history.push("/" + marker.id);
+    if (this.props.location.pathname.indexOf('/validate') === 0){
+      this.props.history.push("/validate/" + marker.id);
+    }
+    else{
+      this.props.history.push("/" + marker.id);
+    }
   }
 
   mapClick = () => {
@@ -67,7 +93,7 @@ class Map extends Component {
 
   render() {
     let position = this.state.defaultPosition;
-    const { markers } = this.props;
+    let { markers } = this.state;
     let zoom = this.state.currentZoom;
 
 
@@ -81,10 +107,12 @@ class Map extends Component {
     }
 
     return (
-      <LMap center={position} zoom={zoom} onClick={() => this.mapClick()}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      <>
+      {this.props.validateMode ? <div className="validationModeHeader">Экран Валидации</div> : null }
+      <LMap center={position} zoom={zoom} maxZoom={18} onClick={() => this.mapClick()}>
+        <MapBoxGLLayer
+          accessToken={MAPBOX_ACCESS_TOKEN}
+          style={MAPBOX_CLASS}
         />
         <MarkerClusterGroup
           spiderfyOnMaxZoom
@@ -145,6 +173,7 @@ class Map extends Component {
           })}
         </MarkerClusterGroup>
       </LMap >
+      </>
     )
   }
 }

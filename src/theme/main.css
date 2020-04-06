@@ -370,6 +370,10 @@ button {
     min-height: 180px;
 }
 
+.currentMarkerDetailsContainer .descriptionSection .infoSection {
+    display: flex;
+}
+
 .currentMarkerDetailsContainer .descriptionSection .text {
     margin:21px;
     font-size: 14px;
@@ -430,6 +434,13 @@ button {
 
 .currentMarkerDetailsContainer .orange{
     color:orange;
+}
+
+.currentMarkerDetailsContainer .userAvatar {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    border-radius: 50%;
 }
 
 .currentMarkerDetailsContainer .socialMediaSection .icons img {
@@ -494,6 +505,7 @@ button {
     height: 100px !important;
 }
 
+
 .createMarkerContainer textarea[name=address]{
     height: 70px !important;
 }
@@ -501,4 +513,21 @@ button {
 .createMarkerContainer .fileUploader{
     width: 500px;
     margin-left:220px;
+}
+
+.validationModeHeader {
+    background-color: yellow;
+    text-align: center;
+    color:black;
+}
+
+.confirmMarkerButton {
+    height: 28px;
+    width: 208px;
+    background: green 0% 0% no-repeat padding-box;
+    border:0;
+    color:#fff;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top:20px;
 }
