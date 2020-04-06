@@ -34,7 +34,7 @@ export const createMarker = (data) => {
     return Promise.resolve([]);
   }
 
-  const url = `${API_BASE_URL}/businesses`;
+  const url = `${API_BASE_URL}/admin/businesses`;
 
   return axios.post(url, data, {
     headers: {

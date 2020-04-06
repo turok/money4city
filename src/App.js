@@ -78,6 +78,7 @@ class App extends Component {
           <Route exact path="/validate/:id?">
             <CurrentMarker validateMode loadInactiveMarkers marker={currentMarker} onCloseMarker={this.onCloseMarker} />
             <Map
+              validateMode
               loadInactiveMarkers
               location={initialLocation}
               markers={[]}
