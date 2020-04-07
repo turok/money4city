@@ -23,7 +23,7 @@ class CreateMarker extends Component {
     }
   }
 
-  createMarker = (e) => {
+  createNewMarker = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -82,7 +82,7 @@ class CreateMarker extends Component {
   render() {
     return (
       <div className="createMarkerContainer">
-        <Form onSubmit={(e) => this.createMarker(e)}>
+        <Form onSubmit={(e) => this.createNewMarker(e)}>
           <Form.Group controlId="name">
             <Form.Label>Название компании:</Form.Label>
             <Form.Control type="text" name="name" placeholder="Введите имя" onChange={(e) => this.handleChange(e)} />
