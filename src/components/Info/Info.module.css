@@ -41,7 +41,7 @@
     position: absolute;
     bottom: 98px;
     right: 25px;
-    z-index: 999999999991;
+    z-index: 999999991;
 
     span + span {
         margin-top: 10px;

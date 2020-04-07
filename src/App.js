@@ -1,11 +1,8 @@
 import React, { Component, browserHistory } from 'react'
 import CurrentMarker from './CurrentMarker'
-import AddButton from '@components/AddButton'
 import Header from '@components/Header'
-import Loading from '@components/Loading'
 import Map from '@components/Map'
 import Info from '@components/Info'
-import createMarker from './CreateMarker';
 
 
 import { getApi } from '@services/api'
@@ -15,7 +12,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import CreateMarker from './CreateMarker'
 

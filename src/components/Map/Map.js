@@ -27,15 +27,11 @@ class Map extends Component {
   componentWillMount() {
     if (this.props.loadInactiveMarkers) {
       getInactiveMarkers().then((result) => {
-        console.log('inactive')
-        console.log(result)
         this.setState({markers: result});
       });
     }
     else{
       getActiveMarkers().then((result) => {
-        console.log('inactive')
-        console.log(result)
         this.setState({markers: result});
       });
     }

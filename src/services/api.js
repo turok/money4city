@@ -63,6 +63,23 @@ export const getInactiveMarkers = () => {
   });
 }
 
+export const sendReceipt = (id, phone, receiptFile) => {
+
+  const url = `${API_BASE_URL}/business/${id}/donates`;
+
+  const formData = new FormData();
+    formData.append("phone", phone);
+    formData.append("receiptFile", receiptFile);
+
+  return axios.post(url, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }).then((result) => {
+      return result.data;
+  });
+}
+
 export const getActiveMarkers = () => {
   const url = `${API_BASE_URL}/businesses`;
 

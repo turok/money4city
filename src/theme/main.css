@@ -285,16 +285,18 @@ button {
 }
 
 .currentMarkerDetailsContainer{
-    height: 100%;
+    height: calc(100% - 64px);
     width: 400px;
     position: absolute;
     background-color: #35303B;
-    z-index: 9999;
-    padding-top: 58px;
+    z-index: 99999999999992;
+    margin-top: 64px;
     font: var(--text-regular);
     font-size: 26px;
     letter-spacing: 0;
 }
+
+
 
 .currentMarkerDetailsContainer .closeDetailsPanel {
     position: absolute;
@@ -530,4 +532,144 @@ button {
     cursor: pointer;
     border-radius: 4px;
     margin-top:20px;
+}
+
+.payModalContainer {
+    border-radius: 5px;
+    height: 680px;
+    z-index: 999999999992;
+    width: 800px;
+    background-color: #35303B;
+    position: fixed;
+    top: calc(50% - 325px);
+    left:calc(50% - 400px);
+    padding:10px;
+    border: 2px solid #35303B; 
+}
+
+.payModalContainer .closeModal{
+    position: absolute;
+    cursor:pointer;
+    right: 10px;
+}
+
+.payModalContainer .header {
+    margin-top:20px;
+    font-size:26px;
+    color:#ADA9B2;
+}
+
+.payModalContainer .tabs {
+    margin-top: 10px;
+    display: flex;
+    border-bottom: 2px solid #D7DBDD;
+    
+}
+
+.payModalContainer .tabs .tab {
+    padding-bottom: 10px;
+    text-align: left;
+    font-size: 16px;
+    color:#ADA9B2;
+}
+  
+.payModalContainer .tabs .tab {
+    cursor: pointer;
+    padding: 5px 30px;
+    font-size: 12px;
+}
+
+.payModalContainer .tabs .tab.selected {
+    border-bottom: 2px solid #000;
+    color:#fff;
+}
+
+.payModalContainer .descriptionSection {
+    display: flex;
+    margin-top:10px;
+}
+
+.payModalContainer .descriptionSection .qrImage {
+    margin-right: 10px;
+}
+
+.payModalContainer .descriptionSection .textSection .title {
+    font-size: 16px;
+    color:#fff;
+}
+
+.payModalContainer .descriptionSection .textSection .description {
+    color: #ADA9B2;
+    font-size:14px;
+}
+
+.payModalContainer .country-name{
+    color:#000;
+}
+
+.payModalContainer .flag-dropdown {
+    height: 35px;
+}
+
+.payModalContainer .fileContainer{
+    margin-top:0px;
+}
+
+.payModalContainer .sendReceiptButton.valid {
+    height: 48px;
+    padding:10px;
+    width: 208px;
+    background: #64B1FF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size:14px;
+    border-radius: 4px;
+}
+
+.payModalContainer .sendReceiptButton {
+    margin-left:25px;
+}
+
+.payModalContainer .sendReceiptButton.invalid {
+    height: 48px;
+    padding:10px;
+    width: 208px;
+    background: grey 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size:14px;
+    border-radius: 4px;
+}
+
+.payModalContainer .paymentApproveSection .header {
+    font-size:16px;
+}
+
+.payModalContainer .paymentApproveSection .description{
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:14px;
+}
+
+.payModalContainer .form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.payModalContainer .confirmationMessage {
+    text-align: center;
+    width: 100%;
+    background-color: green;
+    color: #fff;
+}
+
+.payModalContainer .errorMessage {
+    text-align: center;
+    width: 100%;
+    background-color: red;
+    color: #fff;
 }

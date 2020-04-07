@@ -3,6 +3,7 @@ import { API_BASE_URL } from '@config/constants';
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import { getActiveMarkers, getInactiveMarkers, confirmMarker } from '@services/api';
+import PayModal from '@components/PayModal';
 
 
 class CurrentMarker extends Component {
@@ -12,6 +13,7 @@ class CurrentMarker extends Component {
     this.state = {
       markers: this.props.markers || [],
       marker: null,
+      openPayModal: false,
     }
   }
 
@@ -19,8 +21,6 @@ class CurrentMarker extends Component {
   componentWillMount() {
     if (this.props.loadInactiveMarkers) {
       getInactiveMarkers().then((result) => {
-        console.log('inactive')
-        console.log(result)
         this.setState({markers: result});
 
         if (this.props.match.params.id && result) {
@@ -34,8 +34,6 @@ class CurrentMarker extends Component {
     }
     else{
       getActiveMarkers().then((result) => {
-        console.log('inactive')
-        console.log(result)
         this.setState({markers: result});
 
         if (this.props.match.params.id && result) {
@@ -75,7 +73,14 @@ class CurrentMarker extends Component {
     else{
       this.props.history.push("/");
     }
-    
+  }
+
+  openPayModal = () => {
+    this.setState({openPayModal: true});
+  }
+
+  onClosePayModal = () => {
+    this.setState({openPayModal:false})
   }
 
   render() {
@@ -112,7 +117,8 @@ class CurrentMarker extends Component {
     }
 
     return (
-      < div className="currentMarkerDetailsContainer" >
+      <div className="currentMarkerDetailsContainer" >
+        <PayModal isOpen={this.state.openPayModal} accountNumber={marker.accountNumber} markerId={marker.id} qrImage={marker.qrImagePath} onClose={this.onClosePayModal} />
         <div className="panel nameSection">
           <div className="closeDetailsPanel" onClick={() => this.onCloseMarker()}>x</div>
           <div className="companyImg" style={{ backgroundImage: `url(${API_BASE_URL}/${marker.imagePath})` }}></div>
@@ -140,7 +146,7 @@ class CurrentMarker extends Component {
         <div className="panel descriptionSection">
           <div className="infoSection">
           { marker.ownerAvatarPath ?
-             <img src={`${API_BASE_URL}/${marker.imagePath}`} className="userAvatar"></img> :
+             <img src={`${API_BASE_URL}/${marker.ownerAvatarPath}`} className="userAvatar"></img> :
             <span className="fa fa-user"></span> } 
               {marker.contactName}
           </div>
@@ -148,7 +154,7 @@ class CurrentMarker extends Component {
             {marker.description}
           </div>
           <div className="buttons">
-            <input type="button" className="supportButton" value="Поддержать рублём" />
+            <input type="button" className="supportButton" value="Поддержать рублём" onClick={this.openPayModal}/>
             {this.props.validateMode ? <input type="button" className="confirmMarkerButton" value="Все хорошо" onClick={() => this.confirmMarker(marker.id) } /> : null}
           </div>
         </div>

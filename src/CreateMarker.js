@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import ImageUploader from 'react-images-upload';
-import { postApi, createMarker } from '@services/api';
-import endpoints from '@config/endpoints'
+import { createMarker } from '@services/api';
 
 class CreateMarker extends Component {
   constructor(props) {
@@ -20,7 +19,7 @@ class CreateMarker extends Component {
       accountNumber: null,
       imageFile: null,
       ownerAvatarFile: null,
-      qrImage: null,
+      qrImagePath: null,
     }
   }
 
@@ -50,7 +49,7 @@ class CreateMarker extends Component {
     }
 
     if (this.state.qrImage) {
-      formData.append("qrImage", this.state.qrImage);
+      formData.append("qrImagePath", this.state.qrImage);
     }
 
     createMarker(formData).then((result) => {
@@ -72,7 +71,7 @@ class CreateMarker extends Component {
 
   onDropQR = (photo) => {
     this.setState({
-      qrImage: photo[0],
+      qrImagePath: photo[0],
     });
   };
 
@@ -124,30 +123,30 @@ class CreateMarker extends Component {
             withIcon
             singleImage
             withPreview
-            buttonText='Выберите лого для представителя'
+            buttonText="Выберите лого для представителя"
             imgExtension={['.jpg', '.gif', '.png', '.gif']}
             maxFileSize={5242880}
-            className='imageUploader'
+            className="imageUploader"
             onChange={this.onDropAvatar}
           />
           <ImageUploader
             withIcon
             singleImage
             withPreview
-            buttonText='Выберите QR'
+            buttonText="Выберите QR"
             imgExtension={['.jpg', '.gif', '.png', '.gif']}
             maxFileSize={5242880}
-            className='imageUploader'
+            className="imageUploader"
             onChange={this.onDropQR}
           />
           <Form.Group controlId="statusType">
             <Form.Label>Состояние:</Form.Label>
             <Form.Control name="statusType" as="select" onChange={(e) => this.handleChange(e)}>
               <option>--Выберите Состояние--</option>
-              <option value='NeedHighHelp'>На грани закрытия</option>
-              <option value='NeedMiddleHelp'>Нужна помощь</option>
-              <option value='NeedLowHelp'>Пока держимся</option>
-              <option value='AllGood'>Все хорошо</option>
+              <option value="NeedHighHelp">На грани закрытия</option>
+              <option value="NeedMiddleHelp">Нужна помощь</option>
+              <option value="NeedLowHelp">Пока держимся</option>
+              <option value="AllGood">Все хорошо</option>
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="accountNumber">
@@ -157,7 +156,7 @@ class CreateMarker extends Component {
           <Form.Group controlId="statusType">
             <Form.Label>Валюта счета:</Form.Label>
             <Form.Control name="сurrencyFormat" as="select">
-              <option value='BYN'>BYN</option>
+              <option value="BYN">BYN</option>
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="description">
@@ -168,13 +167,13 @@ class CreateMarker extends Component {
             withIcon
             singleImage
             withPreview
-            buttonText='Выберите лого'
+            buttonText="Выберите лого"
             imgExtension={['.jpg', '.gif', '.png', '.gif']}
             maxFileSize={5242880}
-            className='imageUploader'
+            className="imageUploader"
             onChange={this.onDrop}
           />
-          <Button variant="primary" className='createMarker' type="submit">
+          <Button variant="primary" className="createMarker" type="submit">
             Создать
           </Button>
         </Form>
