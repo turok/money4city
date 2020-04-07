@@ -26,7 +26,7 @@ class PayModal extends Component {
 
   // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
-    this.setState({isOpen: nextProps.isOpen, isValid: false, phone: '', receiptImage: null, confirmationMessage: '', errorMessage: ''});
+    this.setState({isOpen: nextProps.isOpen, qrImage: nextProps.qrImage, isValid: false, phone: '', receiptImage: null, confirmationMessage: '', errorMessage: ''});
   }
 
   validate = () => {
