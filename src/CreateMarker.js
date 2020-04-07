@@ -19,7 +19,7 @@ class CreateMarker extends Component {
       accountNumber: null,
       imageFile: null,
       ownerAvatarFile: null,
-      qrImagePath: null,
+      qrImage: null,
     }
   }
 
@@ -49,7 +49,7 @@ class CreateMarker extends Component {
     }
 
     if (this.state.qrImage) {
-      formData.append("qrImagePath", this.state.qrImage);
+      formData.append("qrImage", this.state.qrImage);
     }
 
     createMarker(formData).then((result) => {
@@ -71,7 +71,7 @@ class CreateMarker extends Component {
 
   onDropQR = (photo) => {
     this.setState({
-      qrImagePath: photo[0],
+      qrImage: photo[0],
     });
   };
 
