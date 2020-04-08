@@ -35,7 +35,7 @@ class Info extends Component {
               Когда все это закончится - ваши любимые заведения смогут и дальше продолжать радовать вас и не забудут каждого, кто помог в это нелегкое время</div>
           <h6>Гарантии</h6>
           <div>Мы не даем гарантий. Помогать или не помогать - это ваше решение. Помните, что это риск, money4 выступает лишь информационным посредником.</div>
-          <div>Cвязаться с нами</div>
+          <div><a className={styles['contact']} href="https://t.me/money4city">Cвязаться с нами</a></div>
         </div>
       )}
       <button className={styles['info-button']} type="button" onClick={() =>this.props.toggleMenu()}><Icon /></button>
